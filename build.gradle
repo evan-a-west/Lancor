@@ -1,22 +1,25 @@
 plugins 
 {
-    id "net.serenity-bdd.serenity-gradle-plugin" version "3.5.1"
-    id 'java' version 17
-    id 'eclipse'
-    id 'idea'
+    id 'net.serenity-bdd.serenity-gradle-plugin' version '3.7.0'
+    id 'java'
+    // id 'eclipse'
+    // id 'idea'
 }
 defaultTasks 'clean','test','aggregate'
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://repository.jboss.org/maven2"
+    }
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 11
+targetCompatibility = 11
 
 ext {
     slf4jVersion = '1.7.7'
-    serenityCoreVersion = '3.6.21'
+    serenityCoreVersion = '3.8.1'
     junitVersion = '5.8.2'
     assertJVersion = '3.22.0'
     logbackVersion = '1.2.10'
@@ -31,12 +34,12 @@ dependencies {
                 "net.serenity-bdd:serenity-cucumber:${serenityCoreVersion}",
                 "org.junit.jupiter:junit-jupiter-api:${junitVersion}",
                 "org.assertj:assertj-core:${assertJVersion}",
-                "ch.qos.logback:logback-classic:${logbackVersion}"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+                "ch.qos.logback:logback-classic:${logbackVersion}",
+                "org.junit.jupiter:junit-jupiter-engine:${junitVersion} "
 }
 
 test {
-    useJUnitPlatform()
+    // useJUnitPlatform()
     testLogging.showStandardStreams = true
     systemProperties System.getProperties()
 }
