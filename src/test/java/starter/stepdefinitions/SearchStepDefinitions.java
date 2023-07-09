@@ -1,5 +1,6 @@
 package starter.stepdefinitions;
 
+import general.navigation.NavigateTo;
 // import io.cucumber.java.Before;
 // import io.cucumber.java.ParameterType;
 import io.cucumber.java.en.Given;
@@ -9,7 +10,6 @@ import net.serenitybdd.screenplay.Actor;
 // import net.serenitybdd.screenplay.actors.OnStage;
 // import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.serenitybdd.screenplay.ensure.Ensure;
-import starter.navigation.NavigateTo;
 import starter.search.LookForInformation;
 import starter.search.WikipediaArticle;
 
@@ -23,14 +23,12 @@ public class SearchStepDefinitions {
     @When("{actor} looks up {string}")
     public void searchesFor(Actor actor, String term) {
         actor.attemptsTo(
-                LookForInformation.about(term)
-        );
+                LookForInformation.about(term));
     }
 
     @Then("{actor} should see information about {string}")
     public void should_see_information_about(Actor actor, String term) {
         actor.attemptsTo(
-                Ensure.that(WikipediaArticle.HEADING).hasText(term)
-        );
+                Ensure.that(WikipediaArticle.HEADING).hasText(term));
     }
 }
